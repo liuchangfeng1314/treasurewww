@@ -2,38 +2,80 @@
   "name": "h5",
   "version": "0.1.0",
   "private": true,
+  "description": "build for cordova",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@ionic/vue": "0.0.4",
     "core-js": "^2.6.5",
-    "vue": "^2.6.10"
+    "fastclick": "^1.0.6",
+    "framework7": "^4.4.6",
+    "framework7-icons": "^2.3.1",
+    "framework7-vue": "^4.4.6",
+    "stylus": "^0.54.5",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.7",
+    "vuex": "^3.1.1",
+    "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.9.0",
     "@vue/cli-plugin-eslint": "^3.9.0",
     "@vue/cli-service": "^3.9.0",
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "^10.0.2",
+    "babel-plugin-import": "^1.12.0",
     "eslint": "^5.16.0",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^2.2.1",
     "eslint-plugin-vue": "^5.0.0",
+    "postcss-pxtorem": "^4.0.1",
+    "stylus-loader": "^3.0.2",
+    "stylus-px2rem": "^1.0.14",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
     "root": true,
     "env": {
-      "node": true
+      "node": true,
+      "es6": true,
+      "browser": true
     },
     "extends": [
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": {},
+    "globals": {},
+    "rules": {
+      "arrow-parens": 0,
+      "generator-star-spacing": 0,
+      "space-before-function-paren": [
+        "error",
+        "never"
+      ],
+      "no-console": "off",
+      "no-new": 0,
+      "no-global-assign": [
+        "error"
+      ],
+      "vue/no-parsing-error": [
+        0,
+        {
+          "x-invalid-end-tag": false,
+          "duplicate-attribute": false
+        }
+      ],
+      "vue/valid-v-for": 0
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }
   },
+  "eslintIgnore": [
+    ""
+  ],
   "postcss": {
     "plugins": {
       "autoprefixer": {}
