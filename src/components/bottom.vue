@@ -7,9 +7,9 @@
         <span class="tabbar-label">首页</span>
       </f7-link>
       <f7-link tab-link="#tab-2">
-        <f7-icon class="icon-fill" f7="collection">
+        <f7-icon class="icon-fill" f7="rocket">
         </f7-icon>
-        <span class="tabbar-label">产品中心</span>
+        <span class="tabbar-label">计划书</span>
       </f7-link>
       <f7-link tab-link="#tab-3">
         <f7-icon class="icon-fill" f7="person_round">

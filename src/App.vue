@@ -7,7 +7,7 @@
       <!-- Your main view, should have "main" prop -->
       <f7-view main url="/">
         <!-- Initial Page -->
-        <f7-page>
+        <f7-page color-theme="pink">
           <!-- top -->
           <!-- <topbar /> -->
           <!-- main-content -->
@@ -19,7 +19,7 @@
             </f7-tab>
             <f7-tab id="tab-2" class="page-content">
               <f7-block>
-                <market />
+                <schedule />
               </f7-block>
             </f7-tab>
             <f7-tab id="tab-3" class="page-content">
@@ -34,9 +34,21 @@
         </f7-page>
       </f7-view>
       <!-- Left resizable Panel with Reveal effect -->
-      <f7-panel left cover resizable>
+      <!-- <f7-panel left effect="reveal">
         <f7-view>
           <contact />
+        </f7-view>
+      </f7-panel> -->
+      <div class="panel panel-left panel-reveal">
+          ... panel content goes here ...
+          <contact />
+      </div>
+      <!-- Right resizable Panel with Cover effect and dark layout theme -->
+      <f7-panel right theme-dark effect="reveal">
+        <f7-view>
+          <f7-page>
+            <f7-block>Right panel content</f7-block>
+          </f7-page>
         </f7-view>
       </f7-panel>
     </f7-app>
@@ -53,7 +65,7 @@ import "./assets/styles/common"
 import contact from 'coms/contact'
 import bottom from 'coms/bottom'
 import home from '@/home'
-import market from '@/supermarket'
+import schedule from '@/schedule'
 import user from '@/user'
 var FastClick = require('fastclick')
 export default {
@@ -63,7 +75,12 @@ export default {
       // attachFastClick
     }
   },
+  mounted() {
+  },
   created() {
+    this.$f7ready((f7) => {
+      console.log('==> Framework7 对象:', f7)
+    })
     // 取消300ms点击延迟
     FastClick.attach(document.body)
     // TODO - for test
@@ -105,7 +122,7 @@ export default {
     contact,
     bottom,
     home,
-    market,
+    schedule,
     user
   }
 }

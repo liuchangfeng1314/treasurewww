@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import App from './App.vue'
-// import router from './router/index'
 import routes from './router/routes'
 import store from './store/index'
 import Api from './api'
@@ -24,7 +23,6 @@ if (window.location.protocol === 'file:') {
 }
 
 new Vue({
-  // router,
   store,
   data() {
     return {
@@ -34,7 +32,7 @@ new Vue({
         routes: routes,
         view: {
           // 取消slide动画
-          iosDynamicNavbar: false,
+          iosDynamicNavbar: false
         },
         navbar: {
           // 在滚动时隐藏
