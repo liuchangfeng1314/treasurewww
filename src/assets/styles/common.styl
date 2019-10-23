@@ -2,3 +2,139 @@
 
 .test
   font-size 52px
+.top-search-bar
+  .searchbar-input-wrap
+    width 500px
+    max-width 500px
+    margin 0 auto
+.top-search-bar.searchbar.searchbar-inline
+  background #fff
+  padding 14px
+i.icon
+  display block
+  background-size 100%
+.icon-activity
+  background url(../images/activity.png)
+.icon-ins2c
+  background url(../images/ins2c.png)
+.icon-car
+  background url(../images/car.png)
+.icon-pro
+  background url(../images/pro.png)
+.icon-fast
+  background url(../images/fast.png)
+.icon-gear
+  background url(../images/gear.png)
+.icon-analysis
+  background url(../images/analysis.png)
+.icon-increase
+  background url(../images/increase.png)
+// 个人中心
+.icon-orders
+  background url(../images/icon-user-1.png)
+.icon-teamwork
+  background url(../images/icon-user-2.png)
+.icon-products
+  background url(../images/icon-user-3.png)
+.icon-integral
+  background url(../images/icon-user-4.png)
+.icon-birthday
+  background url(../images/icon-user-5.png)
+.icon-proceeddate
+  background url(../images/icon-user-6.png)
+.icon-timesheet
+  background url(../images/icon-user-7.png)
+// list
+.icon-cardno
+  background url(../images/icon-user-8.png)
+.icon-officequery
+  background url(../images/icon-user-14.png)
+.icon-discount
+  background url(../images/icon-user-10.png)
+.icon-poster
+  background url(../images/icon-user-11.png)
+.icon-wallet
+  background url(../images/icon-user-9.png)
+.icon-coins
+  background url(../images/coins.png)
+.icon-order-car
+  background url(../images/icon-user-12.png)
+.icon-order-life
+  background url(../images/icon-user-13.png)
+.icon-go
+  background url(../images/go.png)
+.shadow {
+	position: relative;
+	box-shadow: 0px 1px 4px rgba(152,152,152,0.3),
+				0px 0px 20px rgba(152,152,152,0.1) inset;
+}
+
+.shadow::before,
+.shadow::after {
+  content:"";
+  position:absolute;
+  z-index:-1;
+}
+
+.shadow::before,
+.shadow::after {
+  content:"";
+  position:absolute;
+  z-index:-1;
+  bottom:15px;
+  left:10px;
+  width:50%;
+  height:20%;
+}
+
+.shadow::before,
+.shadow::after {
+  content:"";
+  position:absolute;
+  z-index:-1;
+  bottom:15px;
+  left:10px;
+  width:50%;
+  height:20%;
+  box-shadow:0 15px 10px rgba(152, 152, 152, 0.7);
+  transform:rotate(-3deg);
+}
+
+.shadow::after{
+  right:10px;
+  left:auto;
+  transform:rotate(3deg);
+}
+.main-f7-page
+  .page-content
+    padding-top 0
+  .page-content .searchbar:not(.searchbar-inline) .searchbar-inner, .page-content .searchbar:not(.searchbar-inline) input[type=search], .page-content .searchbar:not(.searchbar-inline) input[type=text]
+    border-radius 24px
+    .pull-refreshing-dom
+      position absolute
+      top 100px
+      left 0
+      right 0
+      margin 24px
+      z-index 1
+.common-index-wrap
+  position absolute
+  width 100%
+  top 0
+.common-navbar
+  .title
+    width 100%
+.view-main
+  .navbar
+    // background none
+    // .navbar-inner.common-navbar
+    //   padding 0
+    //   background none
+    .navbar-inner.sub-navbar
+      background #fff
+    &:after
+      background none
+.search-result-area
+  position absolute
+  width 100%
+  top 20px

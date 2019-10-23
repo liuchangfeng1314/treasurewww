@@ -42,7 +42,13 @@ export const setLoadingStatus = ({ commit }, data) => {
   commit('COMMON_LOADING_STATUS', data)
 }
 
+// 设置当前所选择的公司代码
+export const setCurrentChoosedCompany = ({ commit }, data) => {
+  commit('CURR_CHOOSED_COMPANY', data)
+}
+
 export default {
   ...actions,
-  fetchUserLoginStatus
+  fetchUserLoginStatus,
+  setCurrentChoosedCompany
 }

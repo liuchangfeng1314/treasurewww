@@ -29,15 +29,8 @@ new Vue({
       f7params: {
         name: 'Treasure',
         id: 'com.baolian.treasure',
-        routes: routes,
-        view: {
-          // 取消slide动画
-          iosDynamicNavbar: false
-        },
-        navbar: {
-          // 在滚动时隐藏
-          hideOnPageScroll: false
-        }
+        theme: 'ios',
+        routes: routes
       }
     }
   },

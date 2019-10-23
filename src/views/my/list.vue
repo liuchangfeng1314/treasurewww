@@ -1,9 +1,10 @@
 <template>
-  <f7-page ptr @ptr:refresh="loadMore">
-    <f7-navbar :title="title" back-link="返回" :no-hairline="true">
+  <f7-page ptr @ptr:refresh="loadMore" class="inline-page">
+    <f7-navbar :title="title" back-link="返回" :no-hairline="true" :sliding="true" innerClass="sub-navbar">
       <f7-link slot="nav-right" panel-open="left" icon-f7="persons_round_fill">
       </f7-link>
     </f7-navbar>
+     <!-- 顶部导航栏开始 -->
     <f7-list media-list>
       <f7-list-item
         v-for="(item, index) in items"

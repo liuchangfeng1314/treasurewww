@@ -1,7 +1,19 @@
 const routeMap = [
   {
-    path: '/user/list',
-    import: () => import('@/user/list')
+    path: '/home',
+    import: () => import('@/home')
+  },
+  {
+    path: '/products',
+    import: () => import('@/products')
+  },
+  {
+    path: '/my',
+    import: () => import('@/my')
+  },
+  {
+    path: '/my/list',
+    import: () => import('@/my/list')
   }
 ]
 
@@ -10,6 +22,7 @@ function _routeFactroy() {
     item['async'] = (routeTo, routeFrom, resolve) => {
       console.log('==> 来自', routeFrom)
       console.log('==> 去往', routeTo)
+      window.scrollTo(0, 0)
       // 异步加载
       item.import().then((vc) => {
         // 返回组件

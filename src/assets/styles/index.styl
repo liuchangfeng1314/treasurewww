@@ -1,0 +1,187 @@
+@require './mixins.styl'
+
+.home-index
+  display block
+  padding-bottom 188px
+  .page
+    position static
+.swiper-wrap
+  padding 20px
+  padding-bottom 0
+.index-swiper
+    border-radius 16px
+  .swiper-slide
+    img
+      width 100%
+      height 230px
+      max-height 230px
+      border-radius 16px
+.my-tabs
+  .page-content
+    padding-bottom 0
+.events-block
+  ul
+    margin 0
+    padding 0
+    li
+      display inline-block
+      // margin-left 20px
+      margin-right 20px
+      min-width 140px
+      margin-top 12px
+      margin-bottom 12px
+      i.icon
+        width 58px
+        height 58px
+        margin 0 auto
+        margin-bottom 12px
+        text-align center
+      label
+        font-size 26px
+        font-weight 400
+        display block
+      &:nth-child(4), &:nth-child(8)
+        margin-right 0
+.index-tab-wrap
+  margin 0
+  padding 20px
+  padding-top 0
+  span.title
+    display inline-block
+    text-indent 8px
+    width 100%
+    font-size 32px
+    font-weight 500
+    text-align left
+    margin-bottom 14px
+    margin-top 18px
+  .toolbar
+    border-radius 12px
+    background #fff
+    .toolbar-inner
+      a
+        font-size 28px
+  .list.inset
+    margin 0
+    ul
+      margin-top 12px
+      li.media-item
+        img
+          width 180px
+          height 135px
+          border-radius 8px
+        .item-title
+          color #444444
+          font-weight 500
+        .item-subtitle
+          text-align left
+          color #ff6b22
+.recommand-area
+  padding-top 1px
+  padding 20px
+  span
+    display inline-block
+    text-indent 8px
+  span.title
+    width 50%
+    font-size 32px
+    font-weight 500
+    text-align left
+  span.title-btn
+    width 50%
+    text-align right
+    direction rtl
+  .recommand-wrap
+    margin-top 14px
+    background #fff
+    min-height 300px
+    border-radius 12px
+    padding-top 8px
+    .list
+      margin 0
+      ul
+        &:before
+          background none
+        &:after
+          width 90%
+          right 0
+          margin auto
+      li
+        border-radius 12px
+        padding-bottom 12px
+      .item-subtitle
+        text-align left
+        color #ff6b22
+      .item-text
+        color #b1b1b1
+        max-height 120px
+      .item-subtitle, .item-text
+        line-height 42px
+      .item-media img
+        width 220px
+        height 220px
+        border-radius 8px
+      .item-title-row
+        margin-bottom 10px
+    .secondary-list
+      padding-top 24px
+      padding-left 14px
+      padding-right 14px
+      ul
+        margin 0
+        padding 0
+        li
+          position relative
+          display inline-block
+          width 30%
+          margin-right 20px
+          &:last-child
+            margin-right 0
+          i
+            position absolute
+            font-style normal
+            top 12px
+            left 12px
+            background linear-gradient(170deg, white, white)
+            color #bbb
+            padding-left 16px
+            padding-right 16px
+            border-radius 12px
+          img
+            width 200px
+            height 180px
+            border-radius 8px
+          span
+            display block
+            width 100%
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            text-align center
+            font-size 30px
+            margin-top 12px
+            margin-bottom 12px
+            text-indent 0
+            color #666
+.text-swiper-wrap
+  display flex
+  width 90%
+  margin 0 auto
+  padding-left 20px
+  padding-right 20px
+  border-radius 8px
+  background #fff
+  .swiper-container
+    width 90%
+  .index-text-swiper
+    height 24px
+    border-radius 8px
+    padding-top 10px
+    padding-bottom 10px
+    .swiper-slide
+      text-align left
+      font-size 28px
+  span.title
+    display inline
+    i
+      transform scale(0.8)

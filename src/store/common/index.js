@@ -1,7 +1,9 @@
 import getters from './getters'
 
 const state = {
-  isLogin: false
+  isLogin: false,
+  // 当前选择的公司代码
+  currChoosedCompany: null
 }
 
 export default{

@@ -5,74 +5,85 @@
       <!-- Status bar overlay for full screen mode (Cordova or PhoneGap) -->
       <f7-statusbar></f7-statusbar>
       <!-- Your main view, should have "main" prop -->
-      <f7-view main url="/">
+      <f7-view main>
         <!-- Initial Page -->
-        <f7-page color-theme="pink">
-          <!-- top -->
-          <!-- <topbar /> -->
+        <f7-page color-theme="black" class="main-f7-page">
+          <!-- <div class="pull-refreshing-dom">
+            加载中
+          </div> -->
+          <!-- 头部公共navbar -->
+          <!-- <f7-navbar
+            no-hairline
+            innerClass="common-navbar"
+          > -->
+          <!-- <navHome v-if="currView === 'home'" /> -->
+          <!-- <navSchedule v-else-if="currView === 'schedule'" /> -->
+          <!-- <navMy v-else-if="currView === 'my'" /> -->
+          <!-- <navCommon v-else /> -->
+          <!-- </f7-navbar> -->
           <!-- main-content -->
-           <f7-tabs>
-            <f7-tab id="tab-1" class="page-content" tab-active>
-              <f7-block>
-                <home />
-              </f7-block>
+          <f7-tabs class="my-tabs">
+            <f7-tab id="tab-1" class="common-index-wrap" tab-active @tab:show.self="usershow('home')">
+              <home />
             </f7-tab>
-            <f7-tab id="tab-2" class="page-content">
-              <f7-block>
-                <schedule />
-              </f7-block>
+            <f7-tab id="tab-2" class="common-index-wrap" @tab:show.self="usershow('products')">
+              <products />
             </f7-tab>
-            <f7-tab id="tab-3" class="page-content">
-              <f7-block>
-                <user />
-                <!-- <router-view /> -->
-              </f7-block>
+            <f7-tab id="tab-3" class="common-index-wrap" @tab:show.self="usershow('my')">
+              <my />
             </f7-tab>
           </f7-tabs>
+          <!-- <f7-view main url="/"></f7-view> -->
           <!-- bottom -->
-          <bottom />
+          <f7-toolbar tabbar labels bottom no-hairline>
+            <f7-link tab-link="#tab-1" tab-link-active>
+              <f7-icon class="icon-fill" f7="home">
+              </f7-icon>
+              <span class="tabbar-label">首页</span>
+            </f7-link>
+            <f7-link tab-link="#tab-2">
+              <f7-icon class="icon-fill" f7="rocket">
+              </f7-icon>
+              <span class="tabbar-label">产品</span>
+            </f7-link>
+            <f7-link tab-link="#tab-3">
+              <f7-icon class="icon-fill" f7="person_round">
+                <f7-badge color="red">9</f7-badge>
+              </f7-icon>
+              <span class="tabbar-label">我的</span>
+            </f7-link>
+          </f7-toolbar>
         </f7-page>
       </f7-view>
-      <!-- Left resizable Panel with Reveal effect -->
-      <!-- <f7-panel left effect="reveal">
-        <f7-view>
-          <contact />
-        </f7-view>
-      </f7-panel> -->
-      <div class="panel panel-left panel-reveal">
-          ... panel content goes here ...
-          <contact />
-      </div>
       <!-- Right resizable Panel with Cover effect and dark layout theme -->
       <f7-panel right theme-dark effect="reveal">
         <f7-view>
           <f7-page>
-            <f7-block>Right panel content</f7-block>
+            <f7-block>右侧抽屉内容</f7-block>
           </f7-page>
         </f7-view>
       </f7-panel>
     </f7-app>
-    <!-- 整体路由 -->
-    <!-- <keep-alive exclude="">
-      <router-view />
-    </keep-alive> -->
   </div>
 </template>
 
 <script>
 import "./assets/styles/common"
-// import topbar from 'coms/topbar'
-import contact from 'coms/contact'
-import bottom from 'coms/bottom'
+// import navHome from 'coms/nav_home'
+// import navSchedule from 'coms/nav_schedule'
+// import navMy from 'coms/nav_my'
+// import navCommon from 'coms/nav_common'
 import home from '@/home'
-import schedule from '@/schedule'
-import user from '@/user'
+import products from '@/products'
+import my from '@/my'
 var FastClick = require('fastclick')
 export default {
   name: 'app',
   data() {
     return {
-      // attachFastClick
+      hideTopBar: false,
+      currView: 'home',
+      showSearchArea: false
     }
   },
   mounted() {
@@ -115,15 +126,31 @@ export default {
       let fontScale = width / defaultUIWidth;
       document.querySelector("html").style.fontSize = fontSize + "px";
       document.querySelector("body").style.fontSize = 20 * fontScale + "px";
+    },
+    // tab 切换事件
+    usershow(viewName) {
+      this.currView = viewName
+      // 滚回顶端
+      let wrap = document.querySelector('.my-tabs')
+      wrap.scrollIntoView()
+      // 头部搜索框显示隐藏
+      this.currView !== 'home' ? this.hideTopBar = true : this.hideTopBar = false
+      // 个人中心页暂时用不到navbar，先隐藏
+      // if (viewName === 'my') {
+      //   this.$f7.navbar.hide('.navbar', false)
+      // } else {
+      //   this.$f7.navbar.show('.navbar', false)
+      // }
     }
   },
   components: {
-    // topbar,
-    contact,
-    bottom,
+    // navMy,
+    // navHome,
+    // navSchedule,
+    // navCommon,
     home,
-    schedule,
-    user
+    products,
+    my
   }
 }
 </script>
@@ -137,4 +164,7 @@ export default {
   color: #2c3e50;
   /* margin-top: 60px; */
 }
+/* #app .main-f7-page .page-content {
+  padding-top: 0;
+} */
 </style>
