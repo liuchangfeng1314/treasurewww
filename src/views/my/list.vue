@@ -1,24 +1,9 @@
 <template>
   <f7-page ptr @ptr:refresh="loadMore" class="inline-page">
-    <!-- <f7-navbar :title="title" back-link="返回" :no-hairline="true" :sliding="false" innerClass="sub-navbar">
-      <f7-link slot="nav-right" panel-open="left" icon-f7="persons_round_fill">
+    <f7-navbar :title="title" back-link="返回" :no-hairline="true" :sliding="false" innerClass="sub-navbar">
+      <f7-link slot="nav-right" panel-open="right" icon-f7="persons_round_fill">
       </f7-link>
-    </f7-navbar> -->
-    <div class="navbar">
-      <div class="navbar-bg"></div>
-      <div class="navbar-inner">
-        <div class="left">
-          <a href="#" @click="$f7router.back()" class="link">
-            <i class="icon icon-back"></i>
-            <span>返回</span>
-          </a>
-        </div>
-        <div class="title">{{ title }}</div>
-        <div class="right">
-          <f7-link panel-open="right" icon-f7="persons_round_fill"></f7-link>
-        </div>
-      </div>
-    </div>
+    </f7-navbar>
      <!-- 顶部导航栏开始 -->
     <f7-list media-list>
       <f7-list-item

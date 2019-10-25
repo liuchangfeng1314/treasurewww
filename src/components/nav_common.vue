@@ -1,28 +1,28 @@
 <template>
-    <f7-navbar
+  <f7-navbar
+    no-hairline
+    innerClass="common-navbar"
+  >
+    <f7-nav-left>
+      <f7-icon f7="chevron_down"></f7-icon>
+      <f7-button color="black" panel-open="left">
+        {{ company ? company.name : '全部公司' }}
+      </f7-button>
+    </f7-nav-left>
+    <f7-searchbar
+      class="common-searchbar"
+      :form="false"
+      :backdrop="false"
+      disable-button-text="取消"
+      placeholder="康乐一生2019版"
+      :clear-button="true"
       no-hairline
-      innerClass="common-navbar"
-    >
-      <f7-nav-left>
-        <f7-icon f7="chevron_down"></f7-icon>
-        <f7-button color="black" panel-open="left">
-          {{ company ? company.name : '全部公司' }}
-        </f7-button>
-      </f7-nav-left>
-      <f7-searchbar
-        :form="false"
-        width="100%"
-        disable-button-text="取消"
-        placeholder="康乐一生2019版"
-        :clear-button="true"
-        no-hairline
-        search-container=".products-search-list"
-        search-in=".products-search-title"
-        :disable-button="!$theme.aurora"
-        @focus="openSearchArea"
-        @click:disable="closeSearchBar"
-      ></f7-searchbar>
-    </f7-navbar>
+      search-container=".search-list"
+      search-in=".item-title"
+      @focus="openSearchArea"
+      @click:disable="closeSearchBar"
+    ></f7-searchbar>
+  </f7-navbar>
 </template>
 
 <script>

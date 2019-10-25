@@ -3,20 +3,40 @@
     <!-- Main Framework7 App component where we pass Framework7 params -->
     <f7-app :params="$root.f7params">
       <!-- Status bar overlay for full screen mode (Cordova or PhoneGap) -->
-      <f7-statusbar :class="currView === 'my' ? 'back-color' : !0"></f7-statusbar>
+      <f7-statusbar></f7-statusbar>
       <!-- 公共下拉刷新图标组件 -->
-      <div class="pull-refreshing-dom" v-show="showPullDom">
+      <!-- <div class="pull-refreshing-dom" v-show="showPullDom">
         <div class="pull-down-begin" v-show="pullstart">加载中 - 下拉1</div>
         <div class="pull-down-over" v-show="pullmove">加载中 - 下拉2</div>
         <div class="pull-over" v-show="pullRefreshing">加载中</div>
-      </div>
+      </div> -->
+      <!-- 左侧保险公司选择 -->
+      <f7-panel left reveal resizable class="products-panel" @panel:open="openLeftPanel">
+        <f7-view>
+          <company />
+        </f7-view>
+      </f7-panel>
       <!-- Your main view, should have "main" prop -->
-      <f7-view main>
+      <f7-view main :color-theme="themeColor">
         <!-- Initial Page -->
-        <f7-page color-theme="black" class="main-f7-page" :class="currView === 'my' ? 'image-back': !0">
-          <!-- <f7-navbar title="Awesome App" v-show="currView !== 'my'"></f7-navbar> -->
+        <f7-page class="main-f7-page" :class="currView === 'my' ? 'image-back': !0">
           <!-- 公共navbar -->
-          <navCommon />
+          <navCommon v-show="currView !== 'my'" />
+          <!-- 搜索内容展示区 -->
+          <div class="search-result-area" v-show="showSearchArea">
+            <f7-list class="searchbar-not-found">
+              <f7-list-item title="Nothing found"></f7-list-item>
+            </f7-list>
+            <f7-list class="search-list searchbar-found">
+              <f7-list-item title="Acura"></f7-list-item>
+              <f7-list-item title="Audi"></f7-list-item>
+              <f7-list-item title="BMW"></f7-list-item>
+              <f7-list-item title="Cadillac "></f7-list-item>
+              <f7-list-item title="Chevrolet "></f7-list-item>
+              <f7-list-item title="Chrysler "></f7-list-item>
+            </f7-list>
+          </div>
+          <!-- tab切换view -->
           <f7-tabs class="my-tabs">
             <f7-tab id="tab-1" class="common-index-wrap" tab-active @tab:show.self="usershow('home')">
               <home />
@@ -48,23 +68,9 @@
             </f7-link>
           </f7-toolbar>
         </f7-page>
-        <!-- 搜索内容展示区 -->
-        <div class="search-result-area" v-show="showSearchArea">
-          <f7-list class="searchbar-not-found">
-            <f7-list-item title="Nothing found"></f7-list-item>
-          </f7-list>
-          <f7-list class="search-list searchbar-found">
-            <f7-list-item title="Acura"></f7-list-item>
-            <f7-list-item title="Audi"></f7-list-item>
-            <f7-list-item title="BMW"></f7-list-item>
-            <f7-list-item title="Cadillac "></f7-list-item>
-            <f7-list-item title="Chevrolet "></f7-list-item>
-            <f7-list-item title="Chrysler "></f7-list-item>
-          </f7-list>
-        </div>
       </f7-view>
       <!-- Right resizable Panel with Cover effect and dark layout theme -->
-      <f7-panel right theme-dark effect="reveal">
+      <f7-panel right theme-dark :swipe="true" reveal>
         <f7-view>
           <f7-page>
             <f7-block>右侧抽屉内容</f7-block>
@@ -81,38 +87,37 @@ import "./assets/styles/common"
 // import navHome from 'coms/nav_home'
 // import navSchedule from 'coms/nav_schedule'
 // import navMy from 'coms/nav_my'
+import company from 'coms/company'
 import navCommon from 'coms/nav_common'
 import home from '@/home'
 import products from '@/products'
 import my from '@/my'
-var FastClick = require('fastclick')
+// var FastClick = require('fastclick')
 import { mapState } from 'vuex'
 export default {
   name: 'app',
   data() {
     return {
       hideTopBar: false,
-      currView: 'home'
+      currView: 'home',
+      themeColor: 'pink'
     }
   },
   mounted() {
   },
   created() {
+    let me = this
     this.$f7ready((f7) => {
       console.log('==> Framework7 对象:', f7)
-      f7.searchbar.create({
-        el: '.searchbar',
-        searchContainer: '.list',
-        searchIn: '.item-title',
-        on: {
-          search(sb, query, previousQuery) {
-            console.log(query, previousQuery)
-          }
-        }
+      let $$ = f7.$
+      // Dom Events
+      $$('.panel-left').on('panel:open', function() {
+        f7.searchbar.disable('.common-searchbar')
+        me.$store.dispatch('setSearchResultState', false)
       })
     })
     // 取消300ms点击延迟
-    FastClick.attach(document.body)
+    // FastClick.attach(document.body)
     // TODO - for test
     if (window.cordova && window.cordova.plugins.barcodeScanner) {
       window.cordova.plugins.barcodeScanner.scan((result) => {
@@ -154,6 +159,10 @@ export default {
       // wrap.scrollIntoView()
       // 头部搜索框显示隐藏
       this.currView !== 'home' ? this.hideTopBar = true : this.hideTopBar = false
+    },
+    // 打开左侧容器（vue的绑定方法不起作用）
+    openLeftPanel() {
+      this.$store.dispatch('setSearchResultState', false)
     }
   },
   computed: {
@@ -167,6 +176,7 @@ export default {
     })
   },
   components: {
+    company,
     navCommon,
     home,
     products,

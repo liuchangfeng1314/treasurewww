@@ -30,7 +30,15 @@ new Vue({
         name: 'Treasure',
         id: 'com.baolian.treasure',
         theme: 'ios',
-        routes: routes
+        routes: routes,
+        touch: {
+          // Enable fast clicks
+          fastClicks: true
+        },
+        statusbar: {
+          iosOverlaysWebView: true,
+          scrollTopOnClick: true
+        }
       }
     }
   },

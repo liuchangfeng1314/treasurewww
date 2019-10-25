@@ -2,6 +2,7 @@
 
 body
   user-select none
+  overflow-x hidden
 .top-search-bar
   .searchbar-input-wrap
     width 500px
@@ -123,12 +124,6 @@ i.icon
     width 100%
 .view-main
   .navbar
-    // background none
-    // .navbar-inner.common-navbar
-    //   padding 0
-    //   background none
-    .navbar-inner.sub-navbar
-      background #fff
     &:after
       background none
 .search-result-area
@@ -141,21 +136,40 @@ i.icon
   z-index 1
   .list
     margin 0
-.back-color
-  background-color #3b8aff
+.my-status-color
+  background-color var(--f7-theme-color)
 .none-back-color
   background none
-.main-f7-page.image-back
-  background url(../images/user-top-back-3.png) top
-  background-size 100%
-  background-repeat no-repeat
+// .main-f7-page.image-back
+  // background url(../images/user-top-back-3.png) top
+  // background-size 100%
+  // background-repeat no-repeat
 .main-f7-page
   .page-content
-    // padding-top 0
-    .pull-refreshing-dom
+    .navbar
       position absolute
-      top 0
-      left 0
-      right 0
-      margin 24px
-      z-index 1
+      i
+        font-size 32px
+      a.button
+        padding-left 0
+.page
+  .page-content
+    .preloader 
+      .preloader-inner-line
+        background var(--f7-theme-color)
+    .ptr-arrow
+        color var(--f7-theme-color)
+.pull-refreshing-dom
+  position absolute
+  top 98px
+  left 0
+  right 0
+  margin 24px
+  z-index 9999
+.my-tabs
+  .page-content
+    .preloader 
+      .preloader-inner-line
+        background var(--f7-theme-color)
+    .ptr-arrow
+        color var(--f7-theme-color)

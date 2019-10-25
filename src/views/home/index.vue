@@ -6,10 +6,8 @@
     @ptr:pullmove="pullMove"
     @ptr:pullend="pullEnd"
     @ptr:refresh="loadMore" 
-    :ptr-preloader="false">
+    :ptr-preloader="true">
     <!-- 首页主要内容区 -->
-    <!-- top - search - bar -->
-    <!-- <navHome /> -->
     <div class="swiper-wrap">
       <!-- 轮播图 -->
       <f7-swiper 
@@ -199,7 +197,6 @@
 
 <script>
 import '../../assets/styles/index.styl'
-// import navHome from 'coms/nav_home'
 import banner1 from '../../assets/images/banner1.jpg'
 import banner2 from '../../assets/images/banner2.jpg'
 import pro1 from '../../assets/images/pro1.jpg'
@@ -265,29 +262,21 @@ export default {
           text: '增员'
         }
       ],
-      showSearchArea: false,
-      // showPullDom: false,
-      // pullstart: false,
-      // pullmove: false,
-      // pullRefreshing: false
+      showSearchArea: false
     }
   },
   methods: {
     pullStart() {
       console.log('==> 下拉开始')
       // 显示loading dom
-      // this.showPullDom = true
       this.$store.dispatch('setPullDownState', true)
     },
     pullMove(e) {
       if (e.detail.touchesDiff >= 40 && e.detail.touchesDiff < 85) {
         // 下拉到一定区域，下拉箭头显示
-        // this.pullstart = true
         this.$store.dispatch('setPullStart', true)
       } else if (e.detail.touchesDiff >= 85) {
         // 下拉箭头隐藏，释放箭头显示
-        // this.pullstart = false
-        // this.pullmove = true
         this.$store.dispatch('setPullStart', false)
         this.$store.dispatch('setPullMove', true)
       }
@@ -295,20 +284,15 @@ export default {
     pullEnd() {
       console.log('==> 下拉完毕')
       // 下拉箭头和释放箭头隐藏
-      // this.pullstart = false
-      // this.pullmove = false
       this.$store.dispatch('setPullStart', false)
       this.$store.dispatch('setPullMove', false)
     },
     loadMore(event, done) {
       // loading图标显示
-      // this.pullRefreshing = true
       this.$store.dispatch('setPullRefreshing', true)
       setTimeout(() => {
         // 刷新完毕，获取到数据，loading图标隐藏，loading dom隐藏
         console.log('==> 下拉刷新：', '数据已更新')
-        // this.pullRefreshing = false
-        // this.showPullDom = false
         this.$store.dispatch('setPullRefreshing', false)
         this.$store.dispatch('setPullDownState', false)
         done()
@@ -331,7 +315,6 @@ export default {
     // })
   },
   components: {
-    // navHome
   }
 }
 </script>
