@@ -3,25 +3,20 @@
     <!-- Main Framework7 App component where we pass Framework7 params -->
     <f7-app :params="$root.f7params">
       <!-- Status bar overlay for full screen mode (Cordova or PhoneGap) -->
-      <f7-statusbar></f7-statusbar>
+      <f7-statusbar :class="currView === 'my' ? 'back-color' : !0"></f7-statusbar>
+      <!-- 公共下拉刷新图标组件 -->
+      <div class="pull-refreshing-dom" v-show="showPullDom">
+        <div class="pull-down-begin" v-show="pullstart">加载中 - 下拉1</div>
+        <div class="pull-down-over" v-show="pullmove">加载中 - 下拉2</div>
+        <div class="pull-over" v-show="pullRefreshing">加载中</div>
+      </div>
       <!-- Your main view, should have "main" prop -->
       <f7-view main>
         <!-- Initial Page -->
-        <f7-page color-theme="black" class="main-f7-page">
-          <!-- <div class="pull-refreshing-dom">
-            加载中
-          </div> -->
-          <!-- 头部公共navbar -->
-          <!-- <f7-navbar
-            no-hairline
-            innerClass="common-navbar"
-          > -->
-          <!-- <navHome v-if="currView === 'home'" /> -->
-          <!-- <navSchedule v-else-if="currView === 'schedule'" /> -->
-          <!-- <navMy v-else-if="currView === 'my'" /> -->
-          <!-- <navCommon v-else /> -->
-          <!-- </f7-navbar> -->
-          <!-- main-content -->
+        <f7-page color-theme="black" class="main-f7-page" :class="currView === 'my' ? 'image-back': !0">
+          <!-- <f7-navbar title="Awesome App" v-show="currView !== 'my'"></f7-navbar> -->
+          <!-- 公共navbar -->
+          <navCommon />
           <f7-tabs class="my-tabs">
             <f7-tab id="tab-1" class="common-index-wrap" tab-active @tab:show.self="usershow('home')">
               <home />
@@ -33,7 +28,6 @@
               <my />
             </f7-tab>
           </f7-tabs>
-          <!-- <f7-view main url="/"></f7-view> -->
           <!-- bottom -->
           <f7-toolbar tabbar labels bottom no-hairline>
             <f7-link tab-link="#tab-1" tab-link-active>
@@ -54,6 +48,20 @@
             </f7-link>
           </f7-toolbar>
         </f7-page>
+        <!-- 搜索内容展示区 -->
+        <div class="search-result-area" v-show="showSearchArea">
+          <f7-list class="searchbar-not-found">
+            <f7-list-item title="Nothing found"></f7-list-item>
+          </f7-list>
+          <f7-list class="search-list searchbar-found">
+            <f7-list-item title="Acura"></f7-list-item>
+            <f7-list-item title="Audi"></f7-list-item>
+            <f7-list-item title="BMW"></f7-list-item>
+            <f7-list-item title="Cadillac "></f7-list-item>
+            <f7-list-item title="Chevrolet "></f7-list-item>
+            <f7-list-item title="Chrysler "></f7-list-item>
+          </f7-list>
+        </div>
       </f7-view>
       <!-- Right resizable Panel with Cover effect and dark layout theme -->
       <f7-panel right theme-dark effect="reveal">
@@ -63,6 +71,7 @@
           </f7-page>
         </f7-view>
       </f7-panel>
+      <!--  -->
     </f7-app>
   </div>
 </template>
@@ -72,18 +81,18 @@ import "./assets/styles/common"
 // import navHome from 'coms/nav_home'
 // import navSchedule from 'coms/nav_schedule'
 // import navMy from 'coms/nav_my'
-// import navCommon from 'coms/nav_common'
+import navCommon from 'coms/nav_common'
 import home from '@/home'
 import products from '@/products'
 import my from '@/my'
 var FastClick = require('fastclick')
+import { mapState } from 'vuex'
 export default {
   name: 'app',
   data() {
     return {
       hideTopBar: false,
-      currView: 'home',
-      showSearchArea: false
+      currView: 'home'
     }
   },
   mounted() {
@@ -91,6 +100,16 @@ export default {
   created() {
     this.$f7ready((f7) => {
       console.log('==> Framework7 对象:', f7)
+      f7.searchbar.create({
+        el: '.searchbar',
+        searchContainer: '.list',
+        searchIn: '.item-title',
+        on: {
+          search(sb, query, previousQuery) {
+            console.log(query, previousQuery)
+          }
+        }
+      })
     })
     // 取消300ms点击延迟
     FastClick.attach(document.body)
@@ -131,23 +150,24 @@ export default {
     usershow(viewName) {
       this.currView = viewName
       // 滚回顶端
-      let wrap = document.querySelector('.my-tabs')
-      wrap.scrollIntoView()
+      // let wrap = document.querySelector('.my-tabs')
+      // wrap.scrollIntoView()
       // 头部搜索框显示隐藏
       this.currView !== 'home' ? this.hideTopBar = true : this.hideTopBar = false
-      // 个人中心页暂时用不到navbar，先隐藏
-      // if (viewName === 'my') {
-      //   this.$f7.navbar.hide('.navbar', false)
-      // } else {
-      //   this.$f7.navbar.show('.navbar', false)
-      // }
     }
   },
+  computed: {
+    ...mapState({
+      showPullDom: state => state.common.showPullDom,
+      pullstart: state => state.common.pullstart,
+      pullmove: state => state.common.pullmove,
+      pullRefreshing: state => state.common.pullRefreshing,
+      company: state => state.common.currChoosedCompany,
+      showSearchArea: state => state.common.showSearchArea
+    })
+  },
   components: {
-    // navMy,
-    // navHome,
-    // navSchedule,
-    // navCommon,
+    navCommon,
     home,
     products,
     my
@@ -155,7 +175,7 @@ export default {
 }
 </script>
 
-<style>
+<style scope>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -164,7 +184,4 @@ export default {
   color: #2c3e50;
   /* margin-top: 60px; */
 }
-/* #app .main-f7-page .page-content {
-  padding-top: 0;
-} */
 </style>

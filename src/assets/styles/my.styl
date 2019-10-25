@@ -5,11 +5,20 @@
   width 100%
   top 0
 .user-index
-  // background-color #232450
-  background url(../images/user-top-back-3.png) top
-  background-size 100%
-  background-repeat no-repeat
-  padding-bottom 188px
+  // background-color #3b8aff
+  // padding-bottom 188px
+  .transform-top-back
+    width 100%
+    height 476px
+    top 0
+    left 0
+    position absolute
+    background url(../images/user-top-back-3.png) top
+    background-size 100%
+    background-repeat no-repeat
+    transform scale(1)
+    transform-origin center
+    animation all .4s ease-in-out
   .list
     // margin-top 180px
     li
@@ -189,3 +198,9 @@
       position absolute
       right 20px
       top 16px
+.user-index.page
+  background none
+  // background-color #3b8aff
+  // background url(../images/user-top-back-3.png) top
+  // background-size 100%
+  // background-repeat no-repeat

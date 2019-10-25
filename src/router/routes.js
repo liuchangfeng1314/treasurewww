@@ -13,7 +13,11 @@ const routeMap = [
   },
   {
     path: '/my/list',
-    import: () => import('@/my/list')
+    import: () => import('@/my/list'),
+    options: {
+      animate: true,
+      transition: 'f7-parallax'
+    }
   }
 ]
 

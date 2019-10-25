@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-products">
+  <!-- <div class="nav-products"> -->
     <f7-navbar
       no-hairline
       innerClass="common-navbar"
@@ -21,10 +21,26 @@
           search-container=".products-search-list"
           search-in=".products-search-title"
           :disable-button="!$theme.aurora"
+          @focus="openSearchArea"
+          @click:disable="closeSearchBar"
         ></f7-searchbar>
       </f7-nav-title>
+      <!-- 搜索内容展示区 -->
+      <div class="search-result-area" v-show="showSearchArea">
+        <f7-list class="searchbar-not-found">
+          <f7-list-item title="Nothing found"></f7-list-item>
+        </f7-list>
+        <f7-list class="search-list searchbar-found">
+          <f7-list-item title="Acura"></f7-list-item>
+          <f7-list-item title="Audi"></f7-list-item>
+          <f7-list-item title="BMW"></f7-list-item>
+          <f7-list-item title="Cadillac "></f7-list-item>
+          <f7-list-item title="Chevrolet "></f7-list-item>
+          <f7-list-item title="Chrysler "></f7-list-item>
+        </f7-list>
+      </div>
     </f7-navbar>
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>

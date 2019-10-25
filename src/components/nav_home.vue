@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-home">
+  <!-- <div class="nav-home"> -->
     <f7-navbar
       no-hairline
       innerClass="common-navbar"
@@ -24,22 +24,22 @@
       <f7-nav-right>
         <f7-icon f7="document_person"></f7-icon>
       </f7-nav-right>
+      <!-- 搜索内容展示区 -->
+      <div class="search-result-area" v-show="showSearchArea">
+        <f7-list class="searchbar-not-found">
+          <f7-list-item title="Nothing found"></f7-list-item>
+        </f7-list>
+        <f7-list class="search-list searchbar-found">
+          <f7-list-item title="Acura"></f7-list-item>
+          <f7-list-item title="Audi"></f7-list-item>
+          <f7-list-item title="BMW"></f7-list-item>
+          <f7-list-item title="Cadillac "></f7-list-item>
+          <f7-list-item title="Chevrolet "></f7-list-item>
+          <f7-list-item title="Chrysler "></f7-list-item>
+        </f7-list>
+      </div>
     </f7-navbar>
-    <!-- 搜索内容展示区 -->
-    <div class="search-result-area" v-show="showSearchArea">
-      <f7-list class="searchbar-not-found">
-        <f7-list-item title="Nothing found"></f7-list-item>
-      </f7-list>
-      <f7-list class="search-list searchbar-found">
-        <f7-list-item title="Acura"></f7-list-item>
-        <f7-list-item title="Audi"></f7-list-item>
-        <f7-list-item title="BMW"></f7-list-item>
-        <f7-list-item title="Cadillac "></f7-list-item>
-        <f7-list-item title="Chevrolet "></f7-list-item>
-        <f7-list-item title="Chrysler "></f7-list-item>
-      </f7-list>
-    </div>
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>

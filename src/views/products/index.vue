@@ -2,7 +2,7 @@
   <div class="products-index">
     <f7-page>
       <!-- 头部navbar -->
-      <navProducts />
+      <!-- <navProducts /> -->
       <!-- 左侧保险公司选择 -->
       <f7-panel left reveal resizable class="products-panel">
         <f7-view>
@@ -16,7 +16,7 @@
 <script>
 import '../../assets/styles/products.styl'
 import company from '../../components/company'
-import navProducts from 'coms/nav_products'
+// import navProducts from 'coms/nav_products'
 import { mapState } from 'vuex'
 export default {
   data() {
@@ -43,7 +43,7 @@ export default {
   },
   components: {
     company,
-    navProducts
+    // navProducts
   }
 }
 </script>
